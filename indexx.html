@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Femboy Client</title>
+    <title>Femboy Client - Kour.io</title>
     <style>
         * {
             margin: 0;
@@ -12,148 +12,187 @@
         }
 
         body {
-            background: #000000;
+            background: linear-gradient(135deg, #0a0014 0%, #1a0028 50%, #0a0014 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             color: #ffffff;
             font-family: 'Segoe UI', 'Arial', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Fond animé avec particules */
-        .bg-animation {
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Particules en arrière-plan */
+        .particles {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #1a0028 0%, #0a0014 50%, #2a003a 100%);
-            background-size: 400% 400%;
-            animation: gradientMove 15s ease infinite;
+            pointer-events: none;
             z-index: 1;
         }
 
-        @keyframes gradientMove {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        /* Particules flottantes */
         .particle {
-            position: fixed;
-            width: 4px;
-            height: 4px;
+            position: absolute;
+            width: 3px;
+            height: 3px;
             background: rgba(255, 105, 180, 0.6);
             border-radius: 50%;
-            pointer-events: none;
-            animation: float 10s infinite;
+            animation: float 8s infinite;
             box-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0);
+            0%, 100% {
+                transform: translateY(0) translateX(0);
                 opacity: 0;
             }
             10% { opacity: 1; }
             90% { opacity: 1; }
             100% {
-                transform: translateY(-100vh) translateX(100px);
+                transform: translateY(-100vh) translateX(50px);
                 opacity: 0;
             }
         }
 
-        /* Grille en arrière-plan */
-        body::before {
-            content: '';
+        /* Header/Navigation */
+        header {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 105, 180, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 105, 180, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: 2;
-            pointer-events: none;
+            padding: 20px 50px;
+            background: rgba(10, 0, 20, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255, 105, 180, 0.3);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Container principal */
-        .container {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 40px;
-            max-width: 600px;
-            width: 90%;
-        }
-
-        /* Logo/Icône */
         .logo {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            animation: pulse 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px rgba(255, 105, 180, 0.6));
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 30px rgba(255, 105, 180, 0.6));
-            }
-            50% {
-                transform: scale(1.1);
-                filter: drop-shadow(0 0 50px rgba(255, 105, 180, 1));
-            }
-        }
-
-        /* Titre */
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
+            font-size: 1.8rem;
+            font-weight: bold;
             background: linear-gradient(135deg, #ff69b4, #ff1493, #da70d6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 40px rgba(255, 105, 180, 0.4);
+            text-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            color: #ff69b4;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff69b4, #ff1493, #da70d6, #ba55d3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             animation: titleGlow 3s ease-in-out infinite;
+            text-shadow: 0 0 50px rgba(255, 105, 180, 0.5);
         }
 
         @keyframes titleGlow {
             0%, 100% {
-                filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.5));
+                filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.6));
             }
             50% {
-                filter: drop-shadow(0 0 40px rgba(255, 105, 180, 0.9));
+                filter: drop-shadow(0 0 40px rgba(255, 105, 180, 1));
             }
         }
 
-        /* Description */
-        .description {
-            font-size: 1.2rem;
-            color: #ccc;
+        .hero p {
+            font-size: 1.5rem;
+            color: #ddd;
             margin-bottom: 40px;
-            line-height: 1.6;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
-        /* Card de download */
-        .download-card {
-            background: rgba(26, 0, 40, 0.8);
-            border: 2px solid rgba(255, 105, 180, 0.4);
-            border-radius: 20px;
-            padding: 40px;
+        .btn-primary {
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 30px rgba(255, 105, 180, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.6);
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: #ff69b4;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(26, 0, 40, 0.6);
+            border: 2px solid rgba(255, 105, 180, 0.3);
+            border-radius: 15px;
+            padding: 30px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 10px 50px rgba(255, 105, 180, 0.2);
-            margin-bottom: 30px;
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
         }
 
-        .download-card::before {
+        .feature-card::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -161,326 +200,351 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle, rgba(255, 105, 180, 0.1) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
-        .download-card > * {
-            position: relative;
-            z-index: 1;
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff69b4;
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.3);
         }
 
-        /* Version info */
-        .version-info {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .info-item {
-            flex: 1;
-            min-width: 120px;
-            padding: 15px;
-            background: rgba(255, 105, 180, 0.1);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 105, 180, 0.3);
-        }
-
-        .info-label {
-            font-size: 0.8rem;
-            color: #aaa;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .info-value {
-            font-size: 1.2rem;
+        .feature-card h3 {
             color: #ff69b4;
-            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
-        /* Bouton de download principal */
-        .btn-download {
-            width: 100%;
-            padding: 20px;
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, #ff69b4, #ff1493);
-            border: none;
-            border-radius: 15px;
-            color: white;
-            font-weight: bold;
+        .feature-card p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Client Preview Section */
+        .client-preview {
+            padding: 100px 50px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .client-preview h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #ff69b4;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .preview-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(26, 0, 40, 0.8);
+            border: 2px solid rgba(255, 105, 180, 0.4);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 50px rgba(255, 105, 180, 0.2);
+        }
+
+        .menu-demo {
+            background: rgba(10, 0, 20, 0.9);
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .menu-title {
+            font-size: 1.8rem;
+            color: #ff69b4;
+            margin-bottom: 20px;
+            text-align: left;
+            border-bottom: 2px solid rgba(255, 105, 180, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .menu-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid #ff69b4;
+            transition: all 0.3s;
+        }
+
+        .menu-option:hover {
+            background: rgba(255, 105, 180, 0.2);
+            transform: translateX(10px);
+        }
+
+        .toggle {
+            width: 50px;
+            height: 25px;
+            background: #333;
+            border-radius: 25px;
+            position: relative;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 5px 30px rgba(255, 105, 180, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
         }
 
-        .btn-download::before {
-            content: '⬇️';
+        .toggle.active {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+        }
+
+        .toggle::after {
+            content: '';
             position: absolute;
-            left: 20px;
-            font-size: 1.5rem;
-            animation: bounce 2s ease-in-out infinite;
+            width: 21px;
+            height: 21px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .toggle.active::after {
+            left: 27px;
         }
 
-        .btn-download:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 50px rgba(255, 105, 180, 0.6);
-            background: linear-gradient(135deg, #ff1493, #ff69b4);
+        /* Download Section */
+        .download {
+            padding: 100px 50px;
+            text-align: center;
+            background: rgba(255, 105, 180, 0.05);
+            position: relative;
+            z-index: 10;
         }
 
-        .btn-download:active {
-            transform: translateY(-2px);
-        }
-
-        /* Features list */
-        .features-list {
-            text-align: left;
-            margin: 30px 0;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-        }
-
-        .features-list h3 {
+        .download h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
             color: #ff69b4;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
         }
 
-        .features-list ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .features-list li {
-            padding: 10px 0;
-            color: #ddd;
-            border-bottom: 1px solid rgba(255, 105, 180, 0.1);
-            display: flex;
-            align-items: center;
-        }
-
-        .features-list li:last-child {
-            border-bottom: none;
-        }
-
-        .features-list li::before {
-            content: '✨';
-            margin-right: 10px;
+        .download p {
             font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 40px;
         }
 
-        /* Instructions */
-        .instructions {
-            background: rgba(255, 105, 180, 0.1);
-            border: 2px solid rgba(255, 105, 180, 0.3);
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 30px;
-            text-align: left;
+        /* Footer */
+        footer {
+            padding: 40px 50px;
+            background: rgba(10, 0, 20, 0.9);
+            border-top: 2px solid rgba(255, 105, 180, 0.3);
+            text-align: center;
+            position: relative;
+            z-index: 10;
         }
 
-        .instructions h3 {
-            color: #ff69b4;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+        footer p {
+            color: #aaa;
         }
 
-        .instructions ol {
-            color: #ccc;
-            line-height: 1.8;
-            padding-left: 20px;
-        }
-
-        .instructions li {
-            margin-bottom: 10px;
-        }
-
-        /* Footer links */
-        .footer-links {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
+        footer a {
             color: #ff69b4;
             text-decoration: none;
-            padding: 10px 20px;
-            border: 1px solid rgba(255, 105, 180, 0.3);
-            border-radius: 20px;
-            transition: all 0.3s;
-            font-size: 0.9rem;
         }
 
-        .footer-links a:hover {
-            background: rgba(255, 105, 180, 0.2);
-            border-color: #ff69b4;
-            transform: translateY(-2px);
-        }
-
-        /* Warning/Note */
-        .warning {
-            background: rgba(255, 193, 7, 0.1);
-            border: 2px solid rgba(255, 193, 7, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-            color: #ffc107;
-            font-size: 0.9rem;
-        }
-
-        .warning strong {
-            display: block;
-            margin-bottom: 5px;
+        footer a:hover {
+            text-decoration: underline;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+            .hero h1 {
+                font-size: 3rem;
             }
 
-            .logo {
-                font-size: 3.5rem;
+            header {
+                padding: 15px 20px;
             }
 
-            .btn-download {
-                font-size: 1.2rem;
-                padding: 18px;
+            nav a {
+                margin-left: 15px;
+                font-size: 0.9rem;
             }
 
-            .download-card {
-                padding: 25px;
+            .features, .client-preview, .download {
+                padding: 50px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
+    <!-- Particules animées -->
+    <div class="particles" id="particles"></div>
 
-    <div class="container">
-        <div class="logo">💖</div>
+    <!-- Header -->
+    <header>
+        <div class="logo">💖 Femboy Client</div>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#preview">Preview</a>
+            <a href="#download">Download</a>
+            <a href="https://swixieqwq.github.io/hiimafemboy.wav/" target="_blank">Home</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
         <h1>Femboy Client</h1>
-        <p class="description">The cutest and most powerful Kour.io client 💜</p>
+        <p>The cutest Kour.io client ever made 💜✨</p>
+        <button class="btn-primary" onclick="scrollToDownload()">Download Now</button>
+    </section>
 
-        <div class="download-card">
-            <div class="version-info">
-                <div class="info-item">
-                    <div class="info-label">Version</div>
-                    <div class="info-value">v1.5.2</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Size</div>
-                    <div class="info-value">2.4 MB</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Updated</div>
-                    <div class="info-value">Today</div>
-                </div>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2>✨ Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3>Aimbot</h3>
+                <p>Auto-aim with smooth tracking and customizable FOV. Hit every shot with style!</p>
             </div>
-
-            <button class="btn-download" onclick="downloadClient()">
-                Download Client
-            </button>
-
-            <div class="features-list">
-                <h3>🌸 What's Included:</h3>
-                <ul>
-                    <li>Aimbot with smooth tracking</li>
-                    <li>ESP / Wallhack (see through walls)</li>
-                    <li>Speed boost & movement mods</li>
-                    <li>Custom femboy-themed UI</li>
-                    <li>Unlock all skins instantly</li>
-                    <li>No recoil & no spread</li>
-                    <li>Auto-aim, auto-shoot options</li>
-                    <li>Rainbow crosshair & tracers</li>
-                </ul>
+            <div class="feature-card">
+                <span class="feature-icon">👁️</span>
+                <h3>ESP / Wallhack</h3>
+                <p>See players through walls with cute pink outlines and distance indicators.</p>
             </div>
-
-            <div class="instructions">
-                <h3>📋 How to Install:</h3>
-                <ol>
-                    <li>Click the <strong>Download Client</strong> button above</li>
-                    <li>Extract the ZIP file to your desktop</li>
-                    <li>Open <strong>femboy-client.html</strong> in your browser</li>
-                    <li>The client will load Kour.io with mods enabled</li>
-                    <li>Press <strong>INSERT</strong> to open the mod menu in-game</li>
-                    <li>Toggle features ON/OFF and dominate! 💜</li>
-                </ol>
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>Speed Boost</h3>
+                <p>Move faster than ever with adjustable speed multipliers. Zoom zoom!</p>
             </div>
-
-            <div class="warning">
-                <strong>⚠️ Important:</strong>
-                Use at your own risk. This is for educational purposes only. Using mods may result in account bans.
+            <div class="feature-card">
+                <span class="feature-icon">🌈</span>
+                <h3>Custom UI</h3>
+                <p>Beautiful femboy-themed interface with pink gradients and animations.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🎨</span>
+                <h3>Skin Changer</h3>
+                <p>Unlock all skins and customize your character with exclusive colors.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔧</span>
+                <h3>Mod Menu</h3>
+                <p>Easy-to-use menu with toggle switches for all features. Press INSERT to open!</p>
             </div>
         </div>
+    </section>
 
-        <div class="footer-links">
-            <a href="https://swixieqwq.github.io/hiimafemboy.wav/" target="_blank">🏠 Home</a>
-            <a href="#" onclick="alert('Join our Discord server:\ndiscord.gg/femboy-client'); return false;">💬 Discord</a>
-            <a href="#" onclick="alert('Tutorial coming soon! 💜'); return false;">📺 Tutorial</a>
-            <a href="https://www.instagram.com/hiimafemboy.wav/" target="_blank">📸 Instagram</a>
+    <!-- Client Preview Section -->
+    <section class="client-preview" id="preview">
+        <h2>💕 Menu Preview</h2>
+        <div class="preview-container">
+            <p style="color: #aaa; margin-bottom: 30px;">This is how the in-game menu looks like:</p>
+            
+            <div class="menu-demo">
+                <div class="menu-title">🌸 Femboy Client Menu</div>
+                
+                <div class="menu-option">
+                    <span>🎯 Aimbot</span>
+                    <div class="toggle active" onclick="this.classList.toggle('active')"></div>
+                </div>
+                
+                <div class="menu-option">
+                    <span>👁️ ESP / Wallhack</span>
+                    <div class="toggle active" onclick="this.classList.toggle('active')"></div>
+                </div>
+                
+                <div class="menu-option">
+                    <span>⚡ Speed Boost (2x)</span>
+                    <div class="toggle" onclick="this.classList.toggle('active')"></div>
+                </div>
+                
+                <div class="menu-option">
+                    <span>🦘 Bhop / Auto Jump</span>
+                    <div class="toggle active" onclick="this.classList.toggle('active')"></div>
+                </div>
+                
+                <div class="menu-option">
+                    <span>🎨 Rainbow Crosshair</span>
+                    <div class="toggle" onclick="this.classList.toggle('active')"></div>
+                </div>
+                
+                <div class="menu-option">
+                    <span>✨ No Recoil</span>
+                    <div class="toggle active" onclick="this.classList.toggle('active')"></div>
+                </div>
+                
+                <div class="menu-option">
+                    <span>🌈 Unlock All Skins</span>
+                    <div class="toggle active" onclick="this.classList.toggle('active')"></div>
+                </div>
+            </div>
+            
+            <p style="color: #ff69b4; margin-top: 20px; font-size: 0.9rem;">
+                Press <strong>INSERT</strong> to open/close the menu in-game
+            </p>
         </div>
-    </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <h2>💖 Ready to dominate?</h2>
+        <p>Download the Femboy Client and become unstoppable!</p>
+        <button class="btn-primary" onclick="alert('Client is currently in development! Check back soon 💜\n\nFor now, this is a UI preview.\nThe actual client requires reverse engineering of Kour.io which is beyond the scope of this demo.')">
+            Download Client
+        </button>
+        <p style="margin-top: 30px; color: #aaa; font-size: 0.9rem;">
+            Works on: Chrome, Firefox, Edge • Updated for latest Kour.io version
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with 💜 by <a href="https://swixieqwq.github.io/hiimafemboy.wav/" target="_blank">hiimafemboy.wav</a></p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">
+            For educational purposes only • Use at your own risk
+        </p>
+    </footer>
 
     <script>
-        // Créer des particules
-        for (let i = 0; i < 30; i++) {
+        // Créer des particules animées
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 10 + 's';
-            particle.style.animationDuration = (Math.random() * 5 + 8) + 's';
-            document.body.appendChild(particle);
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            particlesContainer.appendChild(particle);
         }
 
-        // Fonction de téléchargement
-        function downloadClient() {
-            // Ici tu mettras le vrai lien de téléchargement
-            // Pour l'instant, un message d'exemple
-            
-            // Simulation de téléchargement
-            const btn = document.querySelector('.btn-download');
-            const originalText = btn.innerHTML;
-            
-            btn.innerHTML = '⏳ Preparing download...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                // OPTION 1: Lien direct vers un fichier
-                // window.location.href = 'https://ton-lien-de-telechargement.com/femboy-client.zip';
-                
-                // OPTION 2: Lien Google Drive
-                // window.open('https://drive.google.com/file/d/TON_ID_DE_FICHIER/view?usp=sharing', '_blank');
-                
-                // OPTION 3: Lien GitHub Release
-                // window.open('https://github.com/TON_USERNAME/femboy-client/releases/download/v1.5.2/femboy-client.zip', '_blank');
-                
-                // Pour l'instant, message d'info
-                alert('🎀 Femboy Client v1.5.2 💜\n\nTo enable real downloads:\n\n1. Upload your client files to:\n   - GitHub Releases\n   - Google Drive\n   - Dropbox\n   - or any file host\n\n2. Replace the link in the downloadClient() function\n\n3. Your users will be able to download!\n\nExample formats:\n- .zip file with HTML/JS client\n- Chrome extension (.crx)\n- Tampermonkey script (.user.js)');
-                
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }, 1500);
+        // Smooth scroll
+        function scrollToDownload() {
+            document.getElementById('download').scrollIntoView({ behavior: 'smooth' });
         }
+
+        // Smooth scroll pour les liens du nav
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
     </script>
 </body>
 </html>
